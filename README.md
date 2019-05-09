@@ -1,14 +1,18 @@
 # vue rich text editor
 
-## Install
+vue 富文本编辑器组件，基于[@quill](https://quilljs.com)新增图片上传和视频上传，欢迎[issues](https://github.com/hsian/atlan-editor/issues)
+
+
+
+## 安装
+
+
 
 ### NPM
 
 ```
 npm install vue-editor --save 
 ```
-
-
 
 > 依赖 quill，axios，vue
 
@@ -21,8 +25,6 @@ npm install vue-editor --save
 
 
 ### 新增配置
-
-
 
 * **uploadImage**
 
@@ -40,7 +42,7 @@ npm install vue-editor --save
 
 
 
-- uploadVideo
+- **uploadVideo**
 
 上传图片配置
 
@@ -56,7 +58,7 @@ npm install vue-editor --save
 
 
 
-## EAXMPLE
+## 例子
 
 参考 `/example`
 
