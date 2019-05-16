@@ -1,5 +1,5 @@
 {
-  "name": "atlan-editor",
+  "name": "vue-word-editor",
   "version": "0.0.1",
   "description": "rich text editor for  vue (based on quill)",
   "main": "dist/index.js",
@@ -7,19 +7,20 @@
     "build": "webpack --config scripts/build.js"
   },
   "bugs": {
-    "url": "https://github.com/hsian/atlan-editor/issues"
+    "url": "https://github.com/hsian/vue-word-editor/issues"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/hsian/atlan-editor.git"
+    "url": "https://github.com/hsian/vue-word-editor.git"
   },
-  "homepage": "https://github.com/hsian/atlan-editor#readme",
+  "homepage": "https://github.com/hsian/vue-word-editor#readme",
   "keywords": [
     "vue quill",
     "vue text editor",
     "vue rich text editor",
     "vue web editor",
-    "vue editor"
+    "vue editor",
+    "vue word editor"
   ],
   "author": "hsian",
   "license": "MIT",

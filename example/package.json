@@ -22,6 +22,6 @@
   },
   "dependencies": {
     "vue": "^2.6.10",
-    "atlan-editor": "file://../"
+    "vue-word-editor": "file://../"
   }
 }

@@ -1,1 +1,1 @@
-export { default } from './components/atlanEditor.vue';
+export { default } from './components/editor.vue';

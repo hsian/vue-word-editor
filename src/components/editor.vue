@@ -133,7 +133,6 @@ export default {
             const newImageTip = document.querySelector(".vue-editor-image-tip");
             const newVideoTip = document.querySelector(".vue-editor-video-tip");
             
-
             if(imageTip){
                 this.handlePosition(imageTip, newImageTip);  
                 this.hasImage = true;

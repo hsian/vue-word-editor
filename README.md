@@ -1,6 +1,6 @@
 # vue rich text editor
 
-vue 富文本编辑器组件，基于[@quill](https://quilljs.com)新增图片上传和视频上传，欢迎[issues](https://github.com/hsian/atlan-editor/issues)
+vue 富文本编辑器组件，基于[@quill](https://quilljs.com)新增图片上传和视频上传，欢迎[issues](https://github.com/hsian/vue-word-editor/issues)
 
 
 
@@ -11,7 +11,7 @@ vue 富文本编辑器组件，基于[@quill](https://quilljs.com)新增图片�
 ### NPM
 
 ```
-npm install vue-editor --save 
+npm install vue-word-editor --save 
 ```
 
 > 依赖 quill，axios，vue
@@ -74,7 +74,7 @@ npm install vue-editor --save
 
   ```
 <script>
-import VueEditor from "vue-editor";
+import VueEditor from "vue-word-editor";
 
 // 需要单独引入样式
 import "quill/dist/quill.snow.css"

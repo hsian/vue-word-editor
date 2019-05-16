@@ -1,10 +1,10 @@
 <template>
   <div id="app">
-    <AtlanEditor :config="config"/>
+    <vueEditor :config="config"/>
   </div>
 </template>
 <script>
-import AtlanEditor from "atlan-editor";
+import vueEditor from "vue-word-editor";
 import "quill/dist/quill.snow.css"
 
 export default {
@@ -63,7 +63,7 @@ export default {
   },
 
   components: {
-    AtlanEditor
+    vueEditor
   },
 }
 </script>
