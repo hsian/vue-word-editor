@@ -58,7 +58,11 @@ npm install vue-word-editor --save
 
 
 
-## 例子
+## 使用
+
+
+
+### 普通SPA使用
 
 参考 `/example`
 
@@ -142,3 +146,39 @@ export default {
 </script>
   ```
 
+
+
+### SSR在Nuxtjs中使用
+
+加个判断再引入即可
+
+```
+import "quill/dist/quill.snow.css"
+let VueEditor;
+
+if (process.browser) {
+    VueEditor = require('vue-word-editor').default
+}
+```
+
+
+
+### 获取内容
+
+1.给组件添加`ref`
+
+```
+<VueEditor :config="config" ref="vueEditor"/>
+```
+
+
+
+2.获取富文本
+
+```
+this.$refs.vueEditor.editor.root.innerHTML
+```
+
+
+
+> 如果想要调用quill对象的方法，可以使用this.$refs.vueEditor.editor访问quill对象
