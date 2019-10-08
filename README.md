@@ -26,9 +26,7 @@ npm install vue-word-editor --save
 
 ### 新增配置
 
-* **uploadImage**
-
-上传图片配置
+上传图片和上传视频的配置 ( uploadImage / uploadVideo )
 
 | 属性           | 类型     | 说明                                              |
 | -------------- | -------- | ------------------------------------------------- |
@@ -39,22 +37,7 @@ npm install vue-word-editor --save
 | uploadSuccess  | Function | 上传成功触发，参数返回上传后的结果和注入方法      |
 | uploadError    | Function | 上传失败触发，参数返回错误                        |
 | showProgress   | Boolean  | 是否展示上传进度条（可自行在uploadProgress定义）  |
-
-
-
-- **uploadVideo**
-
-上传图片配置
-
-| 属性           | 类型     | 说明                                              |
-| -------------- | -------- | ------------------------------------------------- |
-| url            | String   | 上传视频的地址                                    |
-| name           | String   | formData字段名                                    |
-| uploadBefore   | Function | 上传之前触发，参数返回file文件，返回false则不上传 |
-| uploadProgress | Function | 上传中触发，参数返回上传中结果                    |
-| uploadSuccess  | Function | 上传成功触发，参数返回上传后的结果和注入方法      |
-| uploadError    | Function | 上传失败触发，参数返回错误                        |
-| showProgress   | Boolean  | 是否展示上传进度条（可自行在uploadProgress定义）  |
+| headers        | Object   | 上传的头信息                                      |
 
 
 
@@ -66,7 +49,7 @@ npm install vue-word-editor --save
 
 参考 `/example`
 
-````
+````html
 <template>
   <div id="app">
     <VueEditor :config="config"/>
@@ -76,64 +59,34 @@ npm install vue-word-editor --save
 
 
 
-  ```
+  ```vue
 <script>
 import VueEditor from "vue-word-editor";
-
-// 需要单独引入样式
 import "quill/dist/quill.snow.css"
 
 export default {
   name: 'app',
+
   data(){
     return {
       config: {
-        modules: { 
-          // 工具栏
-          toolbar: [
-            ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
-            ['blockquote', 'code-block'],
-            ['image', 'video'],
-
-            [{ 'header': 1 }, { 'header': 2 }],               // custom button values
-            [{ 'list': 'ordered'}, { 'list': 'bullet' }],
-            [{ 'script': 'sub'}, { 'script': 'super' }],      // superscript/subscript
-            [{ 'indent': '-1'}, { 'indent': '+1' }],          // outdent/indent
-            [{ 'direction': 'rtl' }],                         // text direction
-          ]
-        },
-        // 主题
-        theme: 'snow',
+        // 上传图片的配置
         uploadImage: {
-          url: "http://localhost:1337/upload",
-          name: "files",
-          uploadBefore(file){
-            return true
-          },
-          uploadProgress(res){
-
-          },
+          url: "http://localhost:3000/upload",
+          name: "file",
+          // res是结果，insert方法会把内容注入到编辑器中，res.data.url是资源地址
           uploadSuccess(res, insert){
-            insert("http://localhost:1337" + res.data[0].url)
-          },
-          uploadError(){},
-          showProgress: false
+            insert("http://localhost:3000" + res.data.url)
+          }
         },
-
+		 
+        // 上传视频的配置
         uploadVideo: {
-          //url: "http://157.122.54.189:9095/upload",
-          url: "http://localhost:1337/upload",
-          name: "files",
-          uploadBefore(file){
-            return true
-          },
-          uploadProgress(res){
-
-          },
+          url: "http://localhost:3000/upload",
+          name: "file",
           uploadSuccess(res, insert){
-            insert("http://localhost:1337" + res.data[0].url)
-          },
-          uploadError(){},
+            insert("http://localhost:3000" + res.data.url)
+          }
         }
       }
     }
@@ -152,7 +105,7 @@ export default {
 
 加个判断再引入即可
 
-```
+```js
 import "quill/dist/quill.snow.css"
 let VueEditor;
 
@@ -167,7 +120,7 @@ if (process.browser) {
 
 1.给组件添加`ref`
 
-```
+```html
 <VueEditor :config="config" ref="vueEditor"/>
 ```
 
@@ -175,10 +128,8 @@ if (process.browser) {
 
 2.获取富文本
 
-```
+```js
 this.$refs.vueEditor.editor.root.innerHTML
 ```
-
-
 
 > 如果想要调用quill对象的方法，可以使用this.$refs.vueEditor.editor访问quill对象

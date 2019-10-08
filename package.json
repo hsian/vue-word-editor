@@ -1,6 +1,6 @@
 {
   "name": "vue-word-editor",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "description": "rich text editor for  vue (based on quill)",
   "main": "dist/index.js",
   "scripts": {
