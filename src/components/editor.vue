@@ -1,7 +1,6 @@
 <template>
     <div id="vue-editor-wrapper">   
         <div id="editor"></div>
-
         <button class="vue-editor-image-tip ql-snow">
            <svg viewBox="0 0 18 18"> <rect class="ql-stroke" height="10" width="12" x="3" y="4"></rect> <circle class="ql-fill" cx="6" cy="7" r="1"></circle> <polyline class="ql-even ql-fill" points="5 12 5 11 7 9 8 10 11 7 13 9 13 12 5 12"></polyline> </svg>
            <input type="file" @change="handleUpload($event, `image`)">
@@ -23,6 +22,23 @@ import progress from "./progress";
 import { setInterval, setTimeout } from 'timers';
 
 let imageHook, videoHook;
+
+const defaultConfig = {
+    modules: { 
+        toolbar: [
+        ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
+        ['blockquote', 'code-block'],
+        ['image', 'video'],
+
+        [{ 'header': 1 }, { 'header': 2 }],               // custom button values
+        [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+        [{ 'script': 'sub'}, { 'script': 'super' }],      // superscript/subscript
+        [{ 'indent': '-1'}, { 'indent': '+1' }],          // outdent/indent
+        [{ 'direction': 'rtl' }],                         // text direction
+        ]
+    },
+    theme: 'snow',
+}
 
 export default {
     data(){
@@ -72,7 +88,12 @@ export default {
             const isVideo = type === "video";
 
             const hook = isImage && imageHook || isVideo && videoHook; 
-            const { url, name, showProgress } = this.config[
+            const { 
+                url, 
+                name, 
+                headers = {}, 
+                showProgress 
+            } = this.config[
                 isImage && 'uploadImage' ||
                 isVideo && 'uploadVideo'
             ];
@@ -90,6 +111,7 @@ export default {
                 url,
                 method: "POST",
                 data: formData,
+                headers,
                 onUploadProgress(res){
                     const {loaded, total} = res;
 
@@ -187,14 +209,19 @@ export default {
     },
 
     mounted(){  
-        this.editor = new Quill('#editor', this.config);
+        const endConfig = {
+            ...defaultConfig,
+            ...this.config
+        }
+
+        this.editor = new Quill('#editor', endConfig);
         this.initialEmbed();
     }
 }
 </script>
 
 <style scoped>
-    .vue-editor-wrapper{
+    #vue-editor-wrapper{
         position: relative;
     }
 

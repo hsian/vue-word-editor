@@ -13,23 +13,12 @@ export default {
   data(){
     return {
       config: {
-        modules: { 
-          toolbar: [
-            ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
-            ['blockquote', 'code-block'],
-            ['image', 'video'],
-
-            [{ 'header': 1 }, { 'header': 2 }],               // custom button values
-            [{ 'list': 'ordered'}, { 'list': 'bullet' }],
-            [{ 'script': 'sub'}, { 'script': 'super' }],      // superscript/subscript
-            [{ 'indent': '-1'}, { 'indent': '+1' }],          // outdent/indent
-            [{ 'direction': 'rtl' }],                         // text direction
-          ]
-        },
-        theme: 'snow',
         uploadImage: {
-          url: "http://localhost:1337/upload",
-          name: "files",
+          url: "http://localhost:3000/upload",
+          name: "file",
+          headers: {
+            Authorization: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTEsInVzZXJuYW1lIjoiMTAwMTAiLCJuaWNrbmFtZSI6Indvc2hpc2h1aSIsImhlYWRfaW1nIjoiIiwiZ2VuZGVyIjoxLCJpYXQiOjE1Njk2NDE2OTl9.h28pFRjheEUNVrD1vWnk8gaqOqvOnPSp4l7i2SKHreI"
+          },
           uploadBefore(file){
             return true
           },
@@ -37,16 +26,19 @@ export default {
 
           },
           uploadSuccess(res, insert){
-            insert("http://localhost:1337" + res.data[0].url)
+            console.log(res)
+            insert("http://localhost:3000" + res.data.data.url)
           },
-          uploadError(){},
-          showProgress: false
+          uploadError(){}
         },
 
         uploadVideo: {
           //url: "http://157.122.54.189:9095/upload",
-          url: "http://localhost:1337/upload",
-          name: "files",
+          url: "http://localhost:3000/upload",
+          name: "file",
+          headers: {
+            Authorization: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTEsInVzZXJuYW1lIjoiMTAwMTAiLCJuaWNrbmFtZSI6Indvc2hpc2h1aSIsImhlYWRfaW1nIjoiIiwiZ2VuZGVyIjoxLCJpYXQiOjE1Njk2NDE2OTl9.h28pFRjheEUNVrD1vWnk8gaqOqvOnPSp4l7i2SKHreI"
+          },
           uploadBefore(file){
             return true
           },
@@ -54,7 +46,7 @@ export default {
 
           },
           uploadSuccess(res, insert){
-            insert("http://localhost:1337" + res.data[0].url)
+            insert("http://localhost:3000" + res.data.data.url)
           },
           uploadError(){},
         }

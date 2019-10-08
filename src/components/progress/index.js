@@ -21,6 +21,7 @@ export default {
         instance.close = function() {
             instance.$el.parentNode && 
             instance.$el.parentNode.removeChild(instance.$el);
+            instance = null;
         }
 
         document.querySelector("#vue-editor-wrapper").appendChild(instance.$el);
