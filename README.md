@@ -141,7 +141,7 @@ quill.root.innerHTML
 
 ```js
 var quill = this.$refs.vueEditor.editor;
-quill.clipboard.dangerouslyPasteHTML(0,data.content);
+quill.clipboard.dangerouslyPasteHTML(0,`<div>html</div>`);
 ```
 
 
