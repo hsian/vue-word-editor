@@ -116,7 +116,7 @@ if (process.browser) {
 
 
 
-### 获取内容
+### 获取和设置内容
 
 1.给组件添加`ref`
 
@@ -129,7 +129,20 @@ if (process.browser) {
 2.获取富文本
 
 ```js
-this.$refs.vueEditor.editor.root.innerHTML
+var quill = this.$refs.vueEditor.editor;
+quill.root.innerHTML
 ```
 
 > 如果想要调用quill对象的方法，可以使用this.$refs.vueEditor.editor访问quill对象
+
+
+
+3.设置编辑器的内容
+
+```js
+var quill = this.$refs.vueEditor.editor;
+quill.clipboard.dangerouslyPasteHTML(0,data.content);
+```
+
+
+
